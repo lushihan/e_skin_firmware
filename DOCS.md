@@ -56,6 +56,7 @@ Leave the rest of the settings as default. Do not enable the interrupt, as this 
 - Set the clock to internal peripheral clock
 - Set the Time to 320ns (3.125MHz)
     - This will set the period register to 30, based on the clock frequency
+- Disable the TMR3 interupt
 
 **Step 6:** Configure the OCMP3:
 - Set the output mode to "Initalise OCx pin low, generate continuous pulses on OCx pin"
@@ -66,7 +67,8 @@ Leave the rest of the settings as default. Do not enable the interrupt, as this 
 Note that there is no "output pin" for the OCMP3, but the pulse is used to trigger the ADC4.
 
 **Step 7:** Configure the DMA:
-- In the DMA configuration window, enable Channel 0, with trigger source set to "ADC2_DATA_2".
+- In the DMA configuration window, enable Channel 0, with trigger source set to "ADC_DATA2".
+
 
 **Step 8:** Generate the code by clicking the "Generate" button in the MCC toolbar.
 
@@ -159,6 +161,16 @@ The USB module is configured to use the Bulk transfer mode, which is suitable fo
 ### Configuring the USB in Harmony
 **Step 1:** Open the MCC (MPLAB Content Configurator) in MPLAB X IDE.
 **Step 2:** In the "Device Resouces" tab, under "Harmony", "USB", "Device", select Drag USB Vendor Device Layer into project graph, this will automatically add the USB High Speed Driver, the USB Device Layer, and the Harmony Core modules to the project graph. No other configuration is needed, as the default settings are sufficient for our application. MCC will also try to add FreeRTOS and TIME to the project, but these are not needed, so remove them to prevent compilation errors. 
+
+**Step 3:** Configure the clock. USB requires a specific clock frequency, so we must make some changes to the default clock configuration. Open the Clock Configuration menu, and make the following changes.
+- Set the Primary Oscilator (POSC) to 12,000,000 Hz
+- Change the POSC dropdown from off to EC
+- Change the FPLLI... dropdown from FRC to POSC
+- Change FPLLMULT to x33
+- Change FPLL... to 8-16 Mhz
+- Change UPLLFSEL to 12Mhz
+
+Note: some of the names of options in my MCC are not displayed fully and it just has ..., so it may look different. 
 
 ### USB Code
 
