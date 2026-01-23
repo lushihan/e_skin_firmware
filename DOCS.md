@@ -160,6 +160,7 @@ The USB module is configured to use the Bulk transfer mode, which is suitable fo
 
 ### Configuring the USB in Harmony
 **Step 1:** Open the MCC (MPLAB Content Configurator) in MPLAB X IDE.
+
 **Step 2:** In the "Device Resouces" tab, under "Harmony", "USB", "Device", select Drag USB Vendor Device Layer into project graph, this will automatically add the USB High Speed Driver, the USB Device Layer, and the Harmony Core modules to the project graph. No other configuration is needed, as the default settings are sufficient for our application. MCC will also try to add FreeRTOS and TIME to the project, but these are not needed, so remove them to prevent compilation errors. 
 
 **Step 3:** Configure the clock. USB requires a specific clock frequency, so we must make some changes to the default clock configuration. Open the Clock Configuration menu, and make the following changes.
