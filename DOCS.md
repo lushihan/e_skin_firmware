@@ -165,7 +165,7 @@ The USB module is configured to use the Bulk transfer mode, which is suitable fo
 
 **Step 3:** Configure the clock. USB requires a specific clock frequency, so we must make some changes to the default clock configuration. Open the Clock Configuration menu, and make the following changes.
 - Set the Primary Oscilator (POSC) to 12,000,000 Hz
-- Change the POSC dropdown from off to EC
+- Change the POSC dropdown from off to HS
 - Change the FPLLI... dropdown from FRC to POSC
 - Change FPLLMULT to x33
 - Change FPLL... to 8-16 Mhz
